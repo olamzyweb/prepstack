@@ -1,0 +1,78 @@
+
+
+
+
+
+        .carousel-item {
+            height: 100vh;
+            min-height: 350px;
+            background: no-repeat center center scroll;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+          }
+          h1{
+              color: rgb(29, 26, 26);
+          }
+          
+          
+          
+          .bg-image {
+            background-image: url('images/hero3.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+          }
+          .question-card {
+                      border-radius: 15px;
+                      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                      margin-bottom: 20px;
+                  }
+                  .card-title {
+                      color: #2c3e50;
+                  }
+                  .btn-custom {
+                      background-color: #f39c12;
+                      color: white;
+                  }
+          
+          
+          
+                  #loading {
+                     position: fixed;
+                     width: 100%;
+                     height: 100%;
+                     top: 0;
+                     left: 0;
+                     background: rgba(255, 255, 255, 0.8);
+                     z-index: 9999;
+                     display: flex;
+                     justify-content: center;
+                     align-items: center;
+                 }
+          
+                 .spinner {
+                     border: 8px solid #f3f3f3;
+                     border-radius: 30%;
+                     border-top: 8px solid #3498db;
+                     border-bottom: 8px solid #eb9412;
+                     width: 90px;
+                     height: 90px;
+                     animation: spin 1s linear infinite;
+                 }
+          
+                 @keyframes spin {
+                     0% { transform: rotate(0deg); }
+                     100% { transform: rotate(360deg); }
+                 }
+
+                 .search{
+                    border: 1px solid #eb9412; 
+                    border-radius: 15px;   
+                    margin-top: 5px;            
+                 }
+                 .search:focus{
+                    width: 200px;
+                    height: 30px;
+                 }
