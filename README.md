@@ -1,4 +1,4 @@
-#PrespStack
+#PrepStack
 Past Question Web App
 An online platform that provides easy access to download past questions through a secure payment gateway. The app includes user authentication, transaction tracking, and an admin dashboard for managing files and transactions.
 
