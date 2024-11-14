@@ -26,7 +26,7 @@ $curl = curl_init();
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_HTTPHEADER => array(
-      "Authorization: Bearer sk_test_d0a2374326f1d7f63932e9ef4ca0a7894e81fb99",
+      "Authorization: Bearer Put your secret key here",
       "Cache-Control: no-cache",
     ),
   ));
