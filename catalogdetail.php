@@ -105,7 +105,7 @@ $result = $stmt->get_result();
 if(@$status == "1"){
     echo '<button type="button" onclick="payWithPaystack()"  class="btn btn-custom">Buy</button>';
 }elseif(@$status == "0"){
-    echo '<button type="button" onclick="download()"  class="btn btn-custom">Download</button>';
+    echo '<button type="button" onclick="download()"  id="downloadbtn" class="btn btn-custom">Download</button>';
 }else{
     echo 'Something went Wrong';
 }
@@ -158,11 +158,26 @@ function payWithPaystack(){
  handler.openIframe();
 }
 
-function download(){
-    const fileurl2 = document.getElementById("fileurl").value;
-    window.location.href = 'file/' + fileurl2 //
 
-} 
+
+// Function to download the file
+function downloadFile(url, fileName) {
+    const a = document.createElement('a'); // Create an anchor element
+    a.href = url; // Set the URL of the file
+    a.download = fileName; // Set the desired file name
+    document.body.appendChild(a); // Append to the body
+    a.click(); // Trigger a click to start download
+    document.body.removeChild(a); // Remove it after triggering the download
+}
+
+// Add click event listener to the button
+document.getElementById('downloadbtn').addEventListener('click', function () {
+    const fileurl2 = document.getElementById("fileurl").value;
+    const fileUrl = 'file/' + fileurl2; // Replace with your file URL
+    const fileName = fileurl2; // Desired file name
+    downloadFile(fileUrl, fileName);
+});
+
 
 </script>
 <?php include 'includes/footer.php';?>
