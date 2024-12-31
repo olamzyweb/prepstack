@@ -111,9 +111,12 @@ body {
     </div>
 
 
-    <script type="text/javascript">
+   <script type="text/javascript">
       $(document).ready(function(){
           $('#register').click(function(e){
+            document.getElementById("register").disabled = true;
+            document.getElementById("register").innerHTML = "Processing...";
+           
               e.preventDefault();
               // .click('#submit');
               $.ajax({
@@ -122,6 +125,8 @@ body {
                   data: $('#register_form').serialize(),
                   success: function(response){
                       $("#result").html(response);
+                      document.getElementById("register").disabled = false;
+                      document.getElementById("register").innerHTML = "Register";
                   }
               });
               return false;
