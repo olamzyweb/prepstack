@@ -46,11 +46,20 @@ if($fileid == ""){
 
 
  <?php 
+
+
+$query = "SELECT * FROM files WHERE file_id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $fileid);
+$stmt->execute();
+$result = $stmt->get_result();
  
- $query = "SELECT * FROM files WHERE file_id = $fileid";
- $stmt = $conn->prepare($query);
- $stmt->execute();
- $result = $stmt->get_result();
+
+ if(empty($result)){
+    header('location: catalog.php');
+    echo "<script>alert('not found');</script>";
+    
+ } 
 
  while ($row=mysqli_fetch_assoc($result)) {
     $file_name = $row['file_name'];
@@ -58,6 +67,7 @@ if($fileid == ""){
     $file_code = $row['file_code'];
     $amount = $row['amount'];
     $file_url = $row['file_url'];
+    $status = $row['is_paid'];
  }
  
  
@@ -91,9 +101,17 @@ if($fileid == ""){
 <input type="text" value="<?php echo @$fileid;?>" id="fileid" hidden>
 
 
+<?php 
+if(@$status == "1"){
+    echo '<button type="button" onclick="payWithPaystack()"  class="btn btn-custom">Buy</button>';
+}elseif(@$status == "0"){
+    echo '<button type="button" onclick="download()"  class="btn btn-custom">Download</button>';
+}else{
+    echo 'Something went Wrong';
+}
+?>
 
-
-                            <button type="button" onclick="payWithPaystack()"  class="btn btn-custom">Pay</button>
+                            
                             </form>
                         </div>
                 </div>
@@ -103,18 +121,14 @@ if($fileid == ""){
   
     </div>
 
-    <script src="https://js.paystack.co/v1/inline.js"></script>
-
+    
     <script>
 
-// const paymentForm = document.getElementById('paymentform');
-// paymentForm.addEventListener("submit", payWithPaystack, false);
-
-function payWithPaystack() {
+function payWithPaystack(){
   
 
   let handler = PaystackPop.setup({
-    key: '', // Replace with your public key
+    key: 'pk_test_b7d97f5bd5a42fedff6dd0caa52d7d806f152c53', // Replace with your public key
     email: document.getElementById("email").value,
     amount: document.getElementById("amount").value * 100,
     // currency:"USD",
@@ -144,16 +158,18 @@ function payWithPaystack() {
  handler.openIframe();
 }
 
+function download(){
+    const fileurl2 = document.getElementById("fileurl").value;
+    window.location.href = 'file/' + fileurl2 //
 
-
-
-
-<?php include 'includes/footer.php';?>
+} 
 
 </script>
-    
+<?php include 'includes/footer.php';?>
     <script src="assets/js/script.js">
         
     </script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
 </body>
 </html>
